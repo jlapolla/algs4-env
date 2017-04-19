@@ -1,0 +1,96 @@
+#!/usr/bin/env dash
+#
+# The functions defined in this script log all commands and output, and
+# track which steps are already completed. This allows the main script
+# to pick up where it left off if it experiences an error, or is
+# interrupted by the user.
+
+step_file=${0}-current-step.txt
+step_log_file=${0}-log.txt
+
+# http://unix.stackexchange.com/a/29918
+tmpdir=`mktemp -p ~ -d`
+trap 'rm -rf "$tmpdir"' EXIT INT TERM HUP
+pipe="$tmpdir/pipe"
+
+step_current=1
+
+if [ $# -ge 1 ] ; then
+
+  step_start_at=$1
+  shift
+else
+
+  if [ -r "$step_file" ]
+  then step_start_at=`cat "$step_file"`
+  else step_start_at=1
+  fi
+fi
+
+log(){
+  local file message
+
+  file="$1"
+  shift
+  message=
+  while [ $# -ge 1 ] ; do
+
+    message="$message $1"
+    shift
+  done
+
+  echo [`date +%s`] $message 1>>"$file"
+}
+
+step() {
+  if test $step_current -eq $step_start_at ; then
+
+    log "$step_log_file" $@
+    echo $@
+
+    # http://stackoverflow.com/a/1221844
+    mkfifo "$pipe"
+    tee -a "$step_log_file" 0<"$pipe" &
+
+    if "$@" 1>"$pipe" 2>&1 ; then
+
+      wait # Wait for background `tee` to complete
+      rm "$pipe"
+      step_current=$(($step_current + 1))
+      step_start_at=$step_current
+      echo $step_current 1>"$step_file"
+    else
+
+      wait # Wait for background `tee` to complete
+      echo [ERROR]
+      exit 1
+    fi
+
+  else
+
+    step_current=$(($step_current + 1))
+  fi
+}
+
+step_nolog() {
+  if test $step_current -eq $step_start_at ; then
+
+    log "$step_log_file" $@
+    echo $@
+    if "$@" 2>/dev/null 1>&2 ; then
+
+      step_current=$(($step_current + 1))
+      step_start_at=$step_current
+      echo $step_current 1>"$step_file"
+    else
+
+      echo [ERROR]
+      exit 1
+    fi
+
+  else
+
+    step_current=$(($step_current + 1))
+  fi
+}
+

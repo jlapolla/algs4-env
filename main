@@ -1,0 +1,27 @@
+#!/usr/bin/env dash
+#
+# This is the main algs4 Java environment setup script. It installs all
+# dependencies required for working on algs4 problems.
+
+dir=`dirname $0`
+. "$dir"/step
+
+# Manual downloads
+jdk8_tar="jdk-8uXXX-linux-x64.tar.gz"
+if test ! -f "$dir"/downloads/"$jdk8_tar" ; then
+  printf '%s\n%s\n%s\n%s\n' "[MISSING FILE]: downloads/$jdk8_tar" "Please download the latest Oracle Java SE 8 JDK from" "\"http://www.oracle.com/technetwork/java/javase/downloads/index.html\"" "and move/rename the file to \"downloads/$jdk8_tar\"." 1>&2
+  exit 1
+fi
+
+# Automatic downloads
+step curl -so "$dir"/downloads/checkstyle-7.4-all.jar.UNVERIFIED https://superb-dca2.dl.sourceforge.net/project/checkstyle/checkstyle/7.4/checkstyle-7.4-all.jar
+step dash -c "cd $dir/downloads && sha1sum --check sha1sum.txt"
+step mv "$dir"/downloads/checkstyle-7.4-all.jar.UNVERIFIED "$dir"/downloads/checkstyle-7.4-all.jar
+
+# Extract JDK
+step mkdir "$dir"/jdk
+step tar -C "$dir"/jdk -xzf "$dir"/downloads/"$jdk8_tar"
+step mkdir -p ~/env/algs4
+step mv "$dir"/jdk/* ~/env/algs4/jdk
+step rm -r "$dir"/jdk
+
