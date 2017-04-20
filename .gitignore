@@ -1,3 +1,4 @@
+*.class
 /*-current-step.txt
 /*-log.txt
 /env/bin/activate
