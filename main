@@ -18,6 +18,7 @@ fi
 # Automatic downloads
 step curl -so "$dir"/downloads/checkstyle-7.4-all.jar https://superb-dca2.dl.sourceforge.net/project/checkstyle/checkstyle/7.4/checkstyle-7.4-all.jar
 step curl -so "$dir"/downloads/algs4.jar http://algs4.cs.princeton.edu/code/algs4.jar
+step curl -so "$dir"/downloads/checkstyle-algs4.xml http://algs4.cs.princeton.edu/linux/checkstyle-algs4.xml
 
 # Verify downloads
 step dash -c "cd $dir/downloads && sha1sum --check sha1sum.txt"
@@ -34,6 +35,12 @@ base_dir_pattern=`printf "$base_dir" | sed 's/\\//\\\\\\//g'`
 step dash -c "sed 's/%VIRTUAL_ENV%/$base_dir_pattern/g' \"$base_dir\"/bin/activate.template 1>\"$base_dir\"/bin/activate"
 
 # Add libraries
-step mkdir "$base_dir"/lib
+step mkdir -p "$base_dir"/lib
 step cp "$dir"/downloads/algs4.jar "$base_dir"/lib
+
+# Add tools
+step mkdir -p "$base_dir"/jar
+step mkdir -p "$base_dir"/config
+step cp "$dir"/downloads/checkstyle-7.4-all.jar "$base_dir"/jar
+step cp "$dir"/downloads/checkstyle-algs4.xml "$base_dir"/config
 

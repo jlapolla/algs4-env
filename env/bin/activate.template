@@ -29,6 +29,7 @@ deactivate() {
 }
 
 VIRTUAL_ENV="%VIRTUAL_ENV%"
+export VIRTUAL_ENV
 
 if test -n "${PATH+_}" ; then
   _OLD_VIRTUAL_PATH="$PATH"

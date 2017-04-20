@@ -1,5 +1,7 @@
 /env/bin/activate
+/env/config
 /env/lib
+/env/jar
 /env/jdk
 /main-current-step.txt
 /main-log.txt

@@ -1,0 +1,8 @@
+#!/usr/bin/env dash
+
+for JAR in "$VIRTUAL_ENV"/jar/checkstyle-*.jar ; do
+  CHECKSTYLE_JAR="$JAR"
+done
+
+java -cp "$CHECKSTYLE_JAR" com.puppycrawl.tools.checkstyle.Main -c "$VIRTUAL_ENV/config/checkstyle-algs4.xml" "$@"
+
