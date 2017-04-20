@@ -1,24 +1,24 @@
 #!/usr/bin/env dash
 #
 # To activate the algs4 Java environment in Bash, run `source
-# bin/activate` (or, equivalently, `. bin/activate`). To deactivate the
-# algs4 Java environment, run `deactivate`.
+# bin/activate`. To deactivate the algs4 Java environment, run
+# `deactivate`.
 
 deactivate() {
  
-  if ! test -z "${_OLD_VIRTUAL_PATH+_}" ; then
+  if test -n "${_OLD_VIRTUAL_PATH+_}" ; then
     PATH="$_OLD_VIRTUAL_PATH"
     export PATH
     unset _OLD_VIRTUAL_PATH
   fi
 
-  # Invalidate cached command paths, forcing the shell to look up
-  # commands in the new PATH.
-  if test -n "${BASH-}" ; then
+  # Invalidate cached command paths, forcing Bash to look up commands in
+  # the new PATH.
+  if test -n "${BASH+_}" ; then
     hash -r 2>/dev/null
   fi
 
-  if ! test -z "${_OLD_VIRTUAL_PS1+_}" ; then
+  if test -n "${_OLD_VIRTUAL_PS1+_}" ; then
     PS1="$_OLD_VIRTUAL_PS1"
     export PS1
     unset _OLD_VIRTUAL_PS1
@@ -30,17 +30,21 @@ deactivate() {
 
 VIRTUAL_ENV="%VIRTUAL_ENV%"
 
-_OLD_VIRTUAL_PATH="$PATH"
+if test -n "${PATH+_}" ; then
+  _OLD_VIRTUAL_PATH="$PATH"
+fi
 PATH="$VIRTUAL_ENV/bin:$VIRTUAL_ENV/jdk/bin:$PATH"
 export PATH
 
-_OLD_VIRTUAL_PS1="$PS1"
+if test -n "${PS1+_}" ; then
+  _OLD_VIRTUAL_PS1="$PS1"
+fi
 PS1="(algs4) $PS1"
 export PS1
 
-# Invalidate cached command paths, forcing the shell to look up
-# commands in the new PATH.
-if test -n "${BASH-}" ; then
+# Invalidate cached command paths, forcing Bash to look up commands in
+# the new PATH.
+if test -n "${BASH+_}" ; then
   hash -r 2>/dev/null
 fi
 
