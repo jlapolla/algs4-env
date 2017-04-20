@@ -1,0 +1,9 @@
+#!/usr/bin/env dash
+
+FINDBUGS_HOME="$VIRTUAL_ENV/jar/findbugs"
+export FINDBUGS_HOME
+
+FINDBUGS_JAR="$VIRTUAL_ENV/jar/findbugs.jar"
+
+java -jar "$VIRTUAL_ENV/jar/findbugs/lib/findbugs.jar" -textui -low -auxclasspath "$VIRTUAL_ENV/lib/algs4.jar" -longBugCodes -exclude "$VIRTUAL_ENV/config/findbugs-algs4.xml" "$@"
+
