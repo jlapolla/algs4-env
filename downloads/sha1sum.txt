@@ -1,2 +1,3 @@
 8c3ea4463a3cfca1df6f72bec7fef96c8fbe6fd6  algs4.jar
 4d6a71e09d1f2dc44aa3381702f85555be3dab32  checkstyle-7.4-all.jar
+59a24064ca6869e483ce9a04d3c50d14a227d5e6  findbugs-3.0.1.tar.gz
