@@ -6,7 +6,7 @@
 dir=`dirname $0`
 . "$dir"/step
 
-base_dir="$dir"/env
+base_dir=`realpath "$dir"/env`
 
 # Manual downloads
 jdk8_tar="jdk-8uXXX-linux-x64.tar.gz"
@@ -28,6 +28,10 @@ step tar -C "$dir"/tmp -xzf "$dir"/downloads/"$jdk8_tar"
 step mkdir -p "$base_dir"
 step mv "$dir"/tmp/* "$base_dir"/jdk
 step rm -r "$dir"/tmp
+
+# Create environment activation script
+base_dir_pattern=`printf "$base_dir" | sed 's/\\//\\\\\\//g'`
+step dash -c "sed 's/%VIRTUAL_ENV%/$base_dir_pattern/g' \"$base_dir\"/bin/activate.template 1>\"$base_dir\"/bin/activate"
 
 # Add libraries
 step mkdir "$base_dir"/lib
