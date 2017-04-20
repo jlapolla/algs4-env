@@ -6,6 +6,8 @@
 dir=`dirname $0`
 . "$dir"/step
 
+base_dir="~/env/algs4"
+
 # Manual downloads
 jdk8_tar="jdk-8uXXX-linux-x64.tar.gz"
 if test ! -f "$dir"/downloads/"$jdk8_tar" ; then
@@ -23,7 +25,11 @@ step dash -c "cd $dir/downloads && sha1sum --check sha1sum.txt"
 # Extract JDK
 step mkdir "$dir"/jdk
 step tar -C "$dir"/jdk -xzf "$dir"/downloads/"$jdk8_tar"
-step mkdir -p ~/env/algs4
-step mv "$dir"/jdk/* ~/env/algs4/jdk
+step mkdir -p "$base_dir"
+step mv "$dir"/jdk/* "$base_dir"/jdk
 step rm -r "$dir"/jdk
+
+# Add libraries
+step mkdir "$base_dir"/lib
+step cp "$dir"/downloads/algs4.jar "$base_dir"/lib
 
