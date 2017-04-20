@@ -14,9 +14,11 @@ if test ! -f "$dir"/downloads/"$jdk8_tar" ; then
 fi
 
 # Automatic downloads
-step curl -so "$dir"/downloads/checkstyle-7.4-all.jar.UNVERIFIED https://superb-dca2.dl.sourceforge.net/project/checkstyle/checkstyle/7.4/checkstyle-7.4-all.jar
+step curl -so "$dir"/downloads/checkstyle-7.4-all.jar https://superb-dca2.dl.sourceforge.net/project/checkstyle/checkstyle/7.4/checkstyle-7.4-all.jar
+step curl -so "$dir"/downloads/algs4.jar http://algs4.cs.princeton.edu/code/algs4.jar
+
+# Verify downloads
 step dash -c "cd $dir/downloads && sha1sum --check sha1sum.txt"
-step mv "$dir"/downloads/checkstyle-7.4-all.jar.UNVERIFIED "$dir"/downloads/checkstyle-7.4-all.jar
 
 # Extract JDK
 step mkdir "$dir"/jdk
