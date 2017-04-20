@@ -4,5 +4,5 @@ for JAR in "$VIRTUAL_ENV"/tools/checkstyle-*.jar ; do
   CHECKSTYLE_JAR="$JAR"
 done
 
-java -cp "$CHECKSTYLE_JAR" com.puppycrawl.tools.checkstyle.Main -c "$VIRTUAL_ENV/config/checkstyle-algs4.xml" "$@"
+java -cp "$CHECKSTYLE_JAR" -Dsuppressions="$VIRTUAL_ENV/config/checkstyle-suppressions.xml" com.puppycrawl.tools.checkstyle.Main -c "$VIRTUAL_ENV/config/checkstyle-algs4.xml" "$@"
 
