@@ -24,6 +24,7 @@ step curl -so "$dir"/downloads/findbugs-algs4.xml http://algs4.cs.princeton.edu/
 
 # Verify downloads
 step dash -c "cd $dir/downloads && sha1sum --check sha1sum.txt"
+step dash -c "cd $dir/downloads && sha256sum --check sha256sum.txt"
 
 # Extract JDK
 step mkdir "$dir"/tmp
