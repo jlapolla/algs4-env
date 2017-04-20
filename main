@@ -44,10 +44,10 @@ step cp "$dir"/downloads/algs4.jar "$base_dir"/lib
 step mkdir -p "$base_dir"/config
 step cp "$dir"/downloads/checkstyle-algs4.xml "$base_dir"/config
 step cp "$dir"/downloads/findbugs-algs4.xml "$base_dir"/config
-step mkdir -p "$base_dir"/jar
-step cp "$dir"/downloads/checkstyle-7.4-all.jar "$base_dir"/jar
+step mkdir -p "$base_dir"/tools
+step cp "$dir"/downloads/checkstyle-7.4-all.jar "$base_dir"/tools
 step mkdir "$dir"/tmp
 step tar -C "$dir"/tmp -xzf "$dir"/downloads/findbugs-3.0.1.tar.gz
-step mv "$dir"/tmp/* "$base_dir"/jar/findbugs
+step mv "$dir"/tmp/* "$base_dir"/tools/findbugs
 step rm -r "$dir"/tmp
 

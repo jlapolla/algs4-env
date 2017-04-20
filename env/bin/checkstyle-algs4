@@ -1,6 +1,6 @@
 #!/usr/bin/env dash
 
-for JAR in "$VIRTUAL_ENV"/jar/checkstyle-*.jar ; do
+for JAR in "$VIRTUAL_ENV"/tools/checkstyle-*.jar ; do
   CHECKSTYLE_JAR="$JAR"
 done
 
