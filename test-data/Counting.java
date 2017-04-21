@@ -3,11 +3,17 @@
  *  Execution: 
  ******************************************************************************/
 
-public class HelloWorld {
+import edu.princeton.cs.algs4.Counter;
+
+public class Counting {
 
     public static void main(String[] args) { 
 
-        System.out.println("Hello, World!");
+        Counter counter = new Counter("counter");
+        counter.increment();
+        counter.increment();
+        counter.increment();
+        System.out.println(counter.toString());
     }
 }
 

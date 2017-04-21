@@ -1,0 +1,20 @@
+#!/usr/bin/env dash
+
+dir=`dirname $0`
+. "$dir"/step
+
+base_dir=`realpath "$dir"/env`
+
+# Run test
+. "$base_dir"/bin/activate
+step dash -c "cd \"$dir\"/test-data && javac *.java"
+step dash -c "cd \"$dir\"/test-data && test \"xHello, World!\" = \"x\`java HelloWorld\`\""
+step dash -c "cd \"$dir\"/test-data && test \"x3 counter\" = \"x\`java Counting\`\""
+step dash -c "cd \"$dir\"/test-data && checkstyle-algs4 HelloWorld.java"
+step dash -c "cd \"$dir\"/test-data && findbugs-algs4 HelloWorld.class"
+step dash -c "cd \"$dir\"/test-data && if checkstyle-algs4 BadCheckStyle.java ; then exit 1 ; else exit 0 ; fi"
+step dash -c "cd \"$dir\"/test-data && if findbugs-algs4 BadFindBugs.class ; then exit 1 ; else exit 0 ; fi"
+
+# Erase test progress
+rm "$dir"/check-current-step.txt
+
