@@ -1,0 +1,4 @@
+#!/usr/bin/env dash
+
+make -f "$VIRTUAL_ENV/config/default-makefile" "$@"
+

@@ -1,0 +1,18 @@
+FILES := $(patsubst %.java,%,$(wildcard *.java))
+
+.PHONY: javac
+javac: $(addsuffix .class,$(FILES))
+
+.PHONY: checkstyle
+checkstyle:
+	checkstyle-algs4 .
+
+.PHONY: findbugs
+findbugs: $(addsuffix .class,$(FILES))
+	findbugs-algs4 .
+
+%.class: %.java
+	javac $<
+
+.DEFAULT_GOAL := javac
+

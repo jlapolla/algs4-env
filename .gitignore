@@ -2,7 +2,8 @@
 /*-current-step.txt
 /*-log.txt
 /env/bin/activate
-/env/config
+/env/config/*
+!/env/config/default-makefile
 /env/jdk
 /env/lib
 /env/tools
