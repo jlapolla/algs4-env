@@ -55,9 +55,9 @@ if test -n "${PATH+_}" ; then
   _OLD_VIRTUAL_PATH="$PATH"
 fi
 if test -n "${PATH+_}" ; then
-  PATH="$VIRTUAL_ENV/bin:$VIRTUAL_ENV/jdk/bin:$PATH"
+  PATH="$VIRTUAL_ENV/bin:$VIRTUAL_ENV/tools/findbugs/bin:$VIRTUAL_ENV/jdk/bin:$PATH"
 else
-  PATH="$VIRTUAL_ENV/bin:$VIRTUAL_ENV/jdk/bin"
+  PATH="$VIRTUAL_ENV/bin:$VIRTUAL_ENV/tools/findbugs/bin:$VIRTUAL_ENV/jdk/bin"
 fi
 export PATH
 

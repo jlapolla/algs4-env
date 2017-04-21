@@ -12,7 +12,7 @@ findbugs: $(addsuffix .class,$(FILES))
 	findbugs-algs4 .
 
 %.class: %.java
-	javac $<
+	javac -encoding UTF-8 -Xlint:all $<
 
 .DEFAULT_GOAL := javac
 

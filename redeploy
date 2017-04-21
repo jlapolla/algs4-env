@@ -5,7 +5,7 @@ dir=`dirname $0`
 base_dir=`realpath "$dir"/env`
 
 # Delete environment
-rm -rf "$base_dir"/bin/activate "$base_dir"/config "$base_dir"/jdk "$base_dir"/lib "$base_dir"/tools
+rm -rf "$base_dir"/bin/activate "$base_dir"/config/*.xml "$base_dir"/jdk "$base_dir"/lib "$base_dir"/tools
 
 # Skip verified downloads
 if dash -c "cd $dir/downloads && sha1sum --status --check sha1sum.txt" && dash -c "cd $dir/downloads && sha256sum --status --check sha256sum.txt" ; then
