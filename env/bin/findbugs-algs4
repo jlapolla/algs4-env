@@ -3,5 +3,5 @@
 FINDBUGS_HOME="$VIRTUAL_ENV/tools/findbugs"
 export FINDBUGS_HOME
 
-"$VIRTUAL_ENV/tools/findbugs/bin/findbugs" -textui -low -auxclasspath "$VIRTUAL_ENV/lib/algs4.jar" "$@"
+"$VIRTUAL_ENV/tools/findbugs/bin/findbugs" -textui -low -auxclasspath "$VIRTUAL_ENV/lib/algs4.jar" -exitcode "$@"
 
