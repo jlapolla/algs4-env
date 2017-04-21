@@ -18,7 +18,6 @@ fi
 # Automatic downloads
 step curl -so "$dir"/downloads/checkstyle-7.4-all.jar https://superb-dca2.dl.sourceforge.net/project/checkstyle/checkstyle/7.4/checkstyle-7.4-all.jar
 step curl -so "$dir"/downloads/findbugs-3.0.1.tar.gz https://cytranet.dl.sourceforge.net/project/findbugs/findbugs/3.0.1/findbugs-3.0.1.tar.gz
-step curl -so "$dir"/downloads/honest-profiler.zip http://insightfullogic.com/honest-profiler.zip
 step curl -so "$dir"/downloads/algs4.jar http://algs4.cs.princeton.edu/code/algs4.jar
 step curl -so "$dir"/downloads/checkstyle-algs4.xml http://algs4.cs.princeton.edu/linux/checkstyle-algs4.xml
 step curl -so "$dir"/downloads/checkstyle-suppressions.xml http://algs4.cs.princeton.edu/linux/checkstyle-suppressions.xml
@@ -48,16 +47,10 @@ step mkdir -p "$base_dir"/config
 step cp "$dir"/downloads/checkstyle-algs4.xml "$base_dir"/config
 step cp "$dir"/downloads/checkstyle-suppressions.xml "$base_dir"/config
 step cp "$dir"/downloads/findbugs-algs4.xml "$base_dir"/config
-
 step mkdir -p "$base_dir"/tools
-
 step cp "$dir"/downloads/checkstyle-7.4-all.jar "$base_dir"/tools
-
 step mkdir "$dir"/tmp
 step tar -C "$dir"/tmp -xzf "$dir"/downloads/findbugs-3.0.1.tar.gz
 step mv "$dir"/tmp/* "$base_dir"/tools/findbugs
 step rm -r "$dir"/tmp
-
-step mkdir -p "$base_dir/tools/honest-profiler"
-step unzip -d "$base_dir/tools/honest-profiler" "$dir/downloads/honest-profiler.zip"
 
