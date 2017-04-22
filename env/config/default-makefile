@@ -11,6 +11,10 @@ checkstyle:
 findbugs: $(addsuffix .class,$(FILES))
 	findbugs-algs4 .
 
+.PHONY: test
+test: $(addsuffix .class,$(FILES)) Test.class
+	java Test
+
 .PHONY: all
 all: javac checkstyle findbugs
 
