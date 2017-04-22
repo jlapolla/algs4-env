@@ -11,6 +11,9 @@ checkstyle:
 findbugs: $(addsuffix .class,$(FILES))
 	findbugs-algs4 .
 
+.PHONY: all
+all: javac checkstyle findbugs
+
 %.class: %.java
 	javac -encoding UTF-8 -Xlint:all $<
 
