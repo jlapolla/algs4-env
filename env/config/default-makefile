@@ -5,11 +5,11 @@ javac: $(addsuffix .class,$(FILES))
 
 .PHONY: checkstyle
 checkstyle:
-	checkstyle-algs4 .
+	-checkstyle-algs4 .
 
 .PHONY: findbugs
 findbugs: $(addsuffix .class,$(FILES))
-	findbugs-algs4 .
+	-findbugs-algs4 .
 
 .PHONY: test
 test: $(addsuffix .class,$(FILES)) Test.class
