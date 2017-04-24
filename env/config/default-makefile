@@ -18,6 +18,10 @@ test: $(addsuffix .class,$(FILES)) Test.class
 .PHONY: all
 all: javac checkstyle findbugs
 
+.PHONY: clean
+clean:
+	rm -f *.class
+
 %.class: %.java
 	javac -encoding UTF-8 -Xlint:all $<
 
