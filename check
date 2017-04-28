@@ -1,12 +1,17 @@
 #!/usr/bin/env dash
+#
+# This script tests the deployed environment by compiling sample Java
+# source files in the `test-data` directory.
 
 dir=`dirname $0`
 . "$dir"/step
 
 base_dir=`realpath "$dir"/env`
 
-# Run test
+# Activate the algs4 Java environment in this shell
 . "$base_dir"/bin/activate
+
+# Run tests
 step dash -c "cd \"$dir/test-data\" && javac *.java"
 step dash -c "cd \"$dir/test-data\" && test \"xHello, World!\" = \"x\`java HelloWorld\`\""
 step dash -c "cd \"$dir/test-data\" && test \"x3 counter\" = \"x\`java Counting\`\""
@@ -17,6 +22,8 @@ step dash -c "cd \"$dir/test-data\" && if findbugs-algs4 BadFindBugs.class ; the
 step dash -c "cd \"$dir/test-data\" && rm *.class"
 step dash -c "cd \"$dir/test-data\" && makelocal javac"
 step dash -c "cd \"$dir/test-data\" && test \"xHello, World!\" = \"x\`java HelloWorld\`\""
+step dash -c "cd \"$dir/test-data\" && makelocal clean"
+step dash -c "cd \"$dir/test-data\" && test -z \"\`find -type f -name '*\.class'\`\""
 
 # Erase test progress
 rm "$dir"/check-current-step.txt
