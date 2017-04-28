@@ -1,4 +1,7 @@
 #!/usr/bin/env dash
+#
+# This script removes the algs4 Java environment, then executes the
+# `deploy` script to deploy a fresh environment.
 
 dir=`dirname $0`
 
