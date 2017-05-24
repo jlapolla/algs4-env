@@ -43,7 +43,7 @@ step cp "$dir"/downloads/algs4.jar "$base_dir"/lib
 
 # Add tools
 step mkdir -p "$base_dir"/config
-step cp "$dir"/downloads/checkstyle-algs4.xml "$base_dir"/config
+step dash -c "sed '14,20d' 0<\"$dir\"/downloads/checkstyle-algs4.xml 1>\"$base_dir\"/config/checkstyle-algs4.xml"
 step cp "$dir"/downloads/findbugs-algs4.xml "$base_dir"/config
 step mkdir -p "$base_dir"/tools
 step cp "$dir"/downloads/checkstyle-7.4-all.jar "$base_dir"/tools
